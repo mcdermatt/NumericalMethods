@@ -36,9 +36,7 @@ A(4,4) = 2*(pts(6,1) - pts(4,1));
 % A(4,5) = pts(6,1)- pts(5,1); 
 b(4,1) = 6*(pts(6,2) - pts(5,2))/(pts(6,1)-pts(5,1)) - 6*(pts(5,2) - pts(4,2))/(pts(5,1)-pts(4,1))
 
-A
-b
-
-ddh = A \ b
+% ddh = A \ b
+ddh = gaussseidel(A,b)
 
 end
