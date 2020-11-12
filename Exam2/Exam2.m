@@ -45,3 +45,12 @@ h(4,5) = 3469.8; h(4,6) = 3462.1;
 h(5,5) = 3691.7; h(5,6) = 3686.3;
 h(6,5) = 3918.5; h(6,6) = 3914.5;
 
+% https://www.spiraxsarco.com/resources-and-design-tools/steam-tables/superheated-steam-region
+%@P = 1.15, h = 3304.3, 
+% T = 413.477
+%1.5% error
+
+%@ T=420, h = 3304.3
+% P = 1.0559
+% 8.21% error
+
