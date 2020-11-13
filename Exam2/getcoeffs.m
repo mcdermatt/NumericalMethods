@@ -1,4 +1,5 @@
 function [a0, b0, c0, d0, a1, b1, c1, d1] = getcoeffs(pts)
+%DEPRICATED!!! USE getcoeffsV2.m instead
 % gets coefficients of cubic spline given three input points from form:
 %      (x1,y1),
 %      (x2,y2),

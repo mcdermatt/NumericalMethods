@@ -1,6 +1,10 @@
 function [ddh] = getcoeffsV2(pts)
 % [ddh1, ddh2, ddh3, ddh4, ddh5, ddh6]
 
+%When using this function to solve for the seccond spline, the "T"
+%variables in equations will really represent pressure values
+% (That means T1 will be P1, T2 will be P2 ...)
+
 %Natural Spline Assumption:
 ddh1 = 0
 ddh6 = 0
