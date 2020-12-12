@@ -9,10 +9,48 @@
 %   mixed boundary conditions (combination of y'(x) and y(x)
 
 %TEST
-rungeKutta(0,1,1,0.2)
+% rungeKutta(0,1,1,0.2)
 
 %Convert to first order differential equations
 % x1 = y
 % x2 = y'  = x1'
 % x3 = y'' = x2'
 % x3' = y''' = -0.5*x1*x2
+
+iterations = 10;
+stepSize = 0.1; %h in RK
+%initial conditions for RK
+x0 = 0; %f(0) = 0  ???
+y0 = 0;
+x = 10000; %pick an arbitrarily large number???
+
+%yBar2 = f'(Inf) = 1
+groundTruthBC = 1;
+
+%y2^(n-1)
+lastEstimatedBC = 0.25;
+
+%y'|1^(n-1)
+prevGuess = 0.1;
+
+%y'|1^(n)
+currentGuess = 0.2; 
+
+for i = 1: iterations
+
+    %??? right now this does not change over time
+    currentEstimatedBC = rungeKutta(x0,y0,x,stepSize);
+    %Try: using current guess as y0
+%     currentEstimatedBC = rungeKutta(x0,currentGuess,x,stepSize);
+  
+    slope = (currentEstimatedBC - lastEstimatedBC)/(currentGuess - prevGuess);
+    %y'|1^(n+1)
+    nextGuess = currentGuess + (groundTruthBC - currentEstimatedBC)/slope; 
+    
+    %update vals
+    prevGuess = currentGuess;
+    currentGuess = nextGuess;
+    lastEstimatedBC = currentEstimatedBC;
+end
+
+

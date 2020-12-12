@@ -24,5 +24,5 @@ end
 % end
 
 function out = dydx(x1,x2)
-out = -0.5*x1*x2
+out = -0.5*x1*x2;
 end
