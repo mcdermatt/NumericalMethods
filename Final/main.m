@@ -7,9 +7,7 @@
 %NOTES ABOUT PROBLEM:
 %Boundary Value Problem (8.4) - boundary conditions specified
 %   mixed boundary conditions (combination of y'(x) and y(x)
-
-%TEST
-% rungeKutta(0,1,1,0.2)
+%   https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-equation/
 
 %Convert to first order differential equations
 % x1 = y
@@ -17,32 +15,32 @@
 % x3 = y'' = x2'
 % x3' = y''' = -0.5*x1*x2
 
-iterations = 10;
+
+
+
+iterations = 10; 
 stepSize = 0.1; %h in RK
-%initial conditions for RK
-x0 = 0; %f(0) = 0  ???
-y0 = 0;
-x = 10000; %pick an arbitrarily large number???
+
+initialEstimate = 0.5; %f''(0)
+x = [0 0 initialEstimate]; %initial conditions for RK
+h = 0.01;
+a = 0; %start here
+b = 100; %end here
 
 %yBar2 = f'(Inf) = 1
 groundTruthBC = 1;
-
 %y2^(n-1)
-lastEstimatedBC = 0.25;
-
+lastEstimatedBC = 0.5;
 %y'|1^(n-1)
 prevGuess = 0.1;
-
 %y'|1^(n)
-currentGuess = 0.2; 
+currentGuess = initialEstimate; 
 
 for i = 1: iterations
 
-    %??? right now this does not change over time
-    currentEstimatedBC = rungeKutta(x0,y0,x,stepSize);
-    %Try: using current guess as y0
-%     currentEstimatedBC = rungeKutta(x0,currentGuess,x,stepSize);
-  
+    x(end) = currentGuess
+    currentEstimatedBC = rungeKuttaSystem(a, b, x, h)
+    
     slope = (currentEstimatedBC - lastEstimatedBC)/(currentGuess - prevGuess);
     %y'|1^(n+1)
     nextGuess = currentGuess + (groundTruthBC - currentEstimatedBC)/slope; 

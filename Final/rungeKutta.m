@@ -17,12 +17,3 @@ for i = 1:(n+1)
 end
 
 end
-
-%stolen from https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-equation/
-% function out = dydx(x, y)
-% out = ((x-y)/2);
-% end
-
-function out = dydx(x1,x2)
-out = -0.5*x1*x2;
-end
